@@ -12,6 +12,7 @@ for x in range(0, 10):
     GPIO.output(17,GPIO.HIGH)
     time.sleep(0.25)
     GPIO.output(17,GPIO.LOW)
+    time.sleep(0.25)
 def  main():
     id, text = reader.read()
     print(id)
