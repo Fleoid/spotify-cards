@@ -1,27 +1,42 @@
 #!/usr/bin/env python
 
 import RPi.GPIO as GPIO
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+GPIO.setup(17,GPIO.OUT)
 from mfrc522 import SimpleMFRC522
 import time
-
 reader = SimpleMFRC522()
-
-GPIO.setup(17,GPIO.OUT)
+x = 0
+GPIO.output(17,GPIO.HIGH)
+time.sleep(0.25)
+GPIO.output(17,GPIO.LOW)
+time.sleep(0.25)
+GPIO.output(17,GPIO.HIGH)
+time.sleep(0.25)
+GPIO.output(17,GPIO.LOW)
+time.sleep(0.25)
+GPIO.output(17,GPIO.HIGH)
+time.sleep(0.25)
+GPIO.output(17,GPIO.LOW)
+time.sleep(0.25)
+GPIO.output(17,GPIO.HIGH)
+time.sleep(0.25)
+GPIO.output(17,GPIO.LOW)
 def  main():
-        id, text = reader.read()
-        print(id)
-        print(text)
-        if text ==  "Whoope":
-                x = 0
-                if x == 1:
-                        GPIO.output(17,GPIO.LOW)
-                        x = 0
-                else:
-                        GPIO.output(17,GPIO.HIGH)
-                        x = 1
-                
-        
-        time.sleep(0.5)
+    id, text = reader.read()
+    print(id)
+    print(text)
+    if id ==  439430949183:
+            global x
+            print(text)
+            if x == 1:
+                    GPIO.output(17,GPIO.LOW)
+                    x = 0
+            else:
+                    GPIO.output(17,GPIO.HIGH)
+                    x = 1
+    time.sleep(0.5)
 while True:
     try:
         main()
